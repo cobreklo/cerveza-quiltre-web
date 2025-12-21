@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Search, ShoppingCart, Moon, Sun } from "lucide-react";
+import { Menu, X, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
@@ -14,7 +14,6 @@ const navLinks = [
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isDark, setIsDark] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("inicio");
 
@@ -40,18 +39,17 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [isDark]);
-
   const scrollToSection = (href: string) => {
     const element = document.getElementById(href.slice(1));
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      const headerOffset = 100;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
     }
     setIsOpen(false);
   };
@@ -81,13 +79,18 @@ const Header = () => {
             whileTap={{ scale: 0.98 }}
           >
             <div className="relative">
-              <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-primary/10 flex items-center justify-center overflow-hidden">
-                <span className="text-2xl md:text-3xl font-display font-bold text-primary">Q</span>
+              <div className="w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center overflow-hidden">
+                <img 
+                  src="/logo.png" 
+                  alt="Cerveza Quiltre" 
+                  className="w-full h-full object-cover"
+                />
               </div>
-              <div className="absolute inset-0 rounded-full bg-primary/20 group-hover:animate-ping" />
             </div>
             <div className="hidden sm:block">
-              <h1 className="font-display text-xl md:text-2xl font-bold tracking-wider text-foreground uppercase">
+              <h1 className={`font-display text-xl md:text-2xl font-bold tracking-wider uppercase transition-colors ${
+                scrolled ? "text-foreground" : "text-white"
+              }`}>
                 Cerveza <span className="text-primary">Quiltre</span>
               </h1>
               <p className="text-xs text-muted-foreground font-medium tracking-widest uppercase">
@@ -109,7 +112,9 @@ const Header = () => {
                 className={`relative px-4 py-2 font-medium transition-colors ${
                   activeSection === link.href.slice(1)
                     ? "text-primary"
-                    : "text-muted-foreground hover:text-foreground"
+                    : scrolled
+                      ? "text-muted-foreground hover:text-foreground"
+                      : "text-white hover:text-primary"
                 }`}
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.95 }}
@@ -133,41 +138,23 @@ const Header = () => {
               <input
                 type="text"
                 placeholder="Buscar..."
-                className="w-40 lg:w-48 bg-secondary text-foreground rounded-full py-2 pl-4 pr-10 focus:ring-2 focus:ring-primary focus:outline-none text-sm border-none transition-all group-hover:w-52 lg:group-hover:w-56"
+                className={`w-40 lg:w-48 rounded-full py-2 pl-4 pr-10 focus:ring-2 focus:ring-primary focus:outline-none text-sm border-none transition-all group-hover:w-52 lg:group-hover:w-56 ${
+                  scrolled ? "bg-secondary text-foreground" : "bg-white/10 text-white placeholder:text-white/60"
+                }`}
               />
-              <button className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-primary transition-colors">
+              <button className={`absolute right-3 top-1/2 -translate-y-1/2 transition-colors ${
+                scrolled ? "text-muted-foreground hover:text-primary" : "text-white/80 hover:text-white"
+              }`}>
                 <Search className="w-4 h-4" />
               </button>
             </div>
-
-            {/* Cart */}
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              className="relative p-2 text-muted-foreground hover:text-primary transition-colors"
-            >
-              <ShoppingCart className="w-5 h-5" />
-              <span className="absolute -top-1 -right-1 w-5 h-5 bg-primary text-primary-foreground text-xs font-bold rounded-full flex items-center justify-center">
-                3
-              </span>
-            </motion.button>
-
-            {/* Theme Toggle */}
-            <motion.button
-              whileHover={{ scale: 1.1, rotate: 15 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={() => setIsDark(!isDark)}
-              className="p-2 rounded-full text-muted-foreground hover:text-primary hover:bg-secondary transition-all"
-            >
-              {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-            </motion.button>
 
             {/* Mobile Menu Toggle */}
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-2 text-foreground"
+              className={`lg:hidden p-2 ${scrolled ? "text-foreground" : "text-white"}`}
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </motion.button>

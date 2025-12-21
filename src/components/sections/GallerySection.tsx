@@ -29,7 +29,7 @@ const galleryImages = [
   },
   {
     id: 5,
-    src: "https://images.unsplash.com/photo-1618885472179-5e474019f2a9?q=80&w=800",
+    src: "public/paleale1.jpeg",
     alt: "Cerveza artesanal",
     category: "productos",
   },

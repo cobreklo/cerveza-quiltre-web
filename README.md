@@ -1,73 +1,59 @@
-# Welcome to your Lovable project
+# Cerveza Quiltre 🍺
 
-## Project info
+Bienvenido al repositorio del sitio web de **Cerveza Quiltre**. Este proyecto es una Landing Page moderna diseñada para presentar la marca, sus productos y procesos de elaboración artesanal.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## 🚀 Tecnologías Utilizadas
 
-## How can I edit this code?
+El proyecto está construido con un stack tecnológico moderno enfocado en rendimiento y experiencia de desarrollador:
 
-There are several ways of editing your application.
+-   **[Vite](https://vitejs.dev/):** Entorno de desarrollo frontend de próxima generación.
+-   **[React](https://reactjs.org/):** Biblioteca para construir interfaces de usuario.
+-   **[TypeScript](https://www.typescriptlang.org/):** Superset tipado de JavaScript.
+-   **[Tailwind CSS](https://tailwindcss.com/):** Framework de utilidades CSS.
+-   **[shadcn/ui](https://ui.shadcn.com/):** Colección de componentes UI reutilizables construidos con Radix UI y Tailwind.
+-   **[Framer Motion](https://www.framer.com/motion/):** Biblioteca de animaciones para React.
 
-**Use Lovable**
+## 📂 Estructura del Proyecto
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+La estructura principal del código fuente se encuentra en `src/`:
 
-Changes made via Lovable will be committed automatically to this repo.
+-   `components/sections/`: Contiene las secciones principales de la Landing Page (Hero, Nosotros, Galería, Proceso, Productos).
+-   `components/ui/`: Componentes base de la interfaz (botones, diálogos, carruseles, etc.), provenientes de shadcn/ui.
+-   `pages/`: Vistas principales de la aplicación (Index, NotFound).
+-   `lib/`: Utilidades y configuraciones compartidas.
 
-**Use your preferred IDE**
+## 🛠️ Instalación y Uso
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Asegúrate de tener instalado [Node.js](https://nodejs.org/) (o [Bun](https://bun.sh/)).
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+1.  **Instalar dependencias:**
 
-Follow these steps:
+    ```bash
+    npm install
+    # o si usas bun
+    bun install
+    ```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+2.  **Iniciar el servidor de desarrollo:**
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+    ```bash
+    npm run dev
+    # o
+    bun dev
+    ```
 
-# Step 3: Install the necessary dependencies.
-npm i
+3.  **Construir para producción:**
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+    ```bash
+    npm run build
+    ```
 
-**Edit a file directly in GitHub**
+## ✨ Características Principales
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+-   **Diseño Responsivo:** Adaptado a móviles y escritorio.
+-   **Secciones Informativas:**
+    -   **Hero:** Impacto visual inicial.
+    -   **Productos:** Catálogo de cervezas.
+    -   **Proceso:** Explicación de la elaboración.
+    -   **Galería:** Imágenes destacadas.
+-   **Interacción:** Integración con botón de WhatsApp para contacto directo.

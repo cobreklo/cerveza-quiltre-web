@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
-import { ShoppingCart, Star } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Star } from "lucide-react";
 
 const categories = [
   {
@@ -247,12 +246,6 @@ const ProductsSection = () => {
                         {formatPrice(product.price)}
                       </span>
                     </div>
-                    <Button
-                      size="icon"
-                      className="rounded-full bg-primary hover:bg-primary-dark text-primary-foreground shadow-md hover:scale-110 active:scale-95 transition-all"
-                    >
-                      <ShoppingCart className="w-5 h-5" />
-                    </Button>
                   </div>
                 </div>
               </motion.div>

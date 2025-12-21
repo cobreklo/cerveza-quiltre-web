@@ -30,8 +30,8 @@ const HeroSection = () => {
           alt="Cerveza artesanal"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/60 to-transparent" />
-        <div className="absolute inset-0 bg-foreground/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
+        <div className="absolute inset-0 bg-black/40" />
       </motion.div>
 
       {/* Content */}
@@ -55,7 +55,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-5xl sm:text-6xl lg:text-7xl font-display font-bold text-background leading-tight mb-6"
+              className="text-5xl sm:text-6xl lg:text-7xl font-display font-bold text-white leading-tight mb-6"
             >
               PACK{" "}
               <span className="text-primary relative">
@@ -68,14 +68,14 @@ const HeroSection = () => {
                 />
               </span>
               <br />
-              <span className="text-background/90">DE TEMPORADA</span>
+              <span className="text-white/90">DE TEMPORADA</span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
-              className="text-background/80 text-lg sm:text-xl mb-8 max-w-xl mx-auto lg:mx-0 font-light leading-relaxed"
+              className="text-gray-200 text-lg sm:text-xl mb-8 max-w-xl mx-auto lg:mx-0 font-light leading-relaxed"
             >
               Descubre nuestra selección de cervezas premiadas, cada una con el
               carácter único de un quiltro chileno. Fieles, nobles y con mucha
@@ -98,7 +98,7 @@ const HeroSection = () => {
               <Button
                 variant="outline"
                 size="lg"
-                className="border-background/30 text-background hover:bg-background/10 px-8 py-6 rounded-full"
+                className="bg-transparent border-white/30 text-white hover:bg-white/10 px-8 py-6 rounded-full"
               >
                 Ver Productos
               </Button>
@@ -123,7 +123,7 @@ const HeroSection = () => {
                       {stat.value}
                     </span>
                   </div>
-                  <p className="text-background/60 text-sm mt-1">{stat.label}</p>
+                  <p className="text-gray-300 text-sm mt-1">{stat.label}</p>
                 </div>
               ))}
             </motion.div>
@@ -146,13 +146,12 @@ const HeroSection = () => {
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                 className="relative w-72 h-72 sm:w-80 sm:h-80 rounded-full bg-background/10 backdrop-blur-sm border border-background/20 flex items-center justify-center"
               >
-                <div className="text-center">
-                  <span className="text-8xl font-display font-bold text-primary drop-shadow-2xl">
-                    Q
-                  </span>
-                  <p className="text-background/80 font-display text-xl tracking-widest uppercase mt-2">
-                    Quiltre
-                  </p>
+                <div className="flex flex-col items-center justify-center">
+                  <img 
+                    src="/logo.png" 
+                    alt="Cerveza Quiltre" 
+                    className="w-48 h-48 object-contain drop-shadow-2xl"
+                  />
                 </div>
               </motion.div>
 
