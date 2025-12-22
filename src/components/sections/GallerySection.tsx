@@ -23,7 +23,7 @@ const galleryImages = [
   },
   {
     id: 4,
-    src: "https://images.unsplash.com/photo-1575037614876-c38a4c44ebb4?q=80&w=800",
+    src: "https://images.unsplash.com/photo-1516600164266-f3b8166ae679?q=80&w=800",
     alt: "Evento de cata",
     category: "eventos",
   },
