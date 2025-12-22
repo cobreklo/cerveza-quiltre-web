@@ -8,7 +8,7 @@ const WhatsAppButton = () => {
   return (
     <motion.a
       href={whatsappLink}
-      target="_blank"
+      target="_self"
       rel="noopener noreferrer"
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}

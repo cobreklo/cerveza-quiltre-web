@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Search } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
@@ -16,6 +16,7 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("inicio");
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,6 +55,20 @@ const Header = () => {
     setIsOpen(false);
   };
 
+  const playPourSound = () => {
+    if (!audioRef.current) {
+      audioRef.current = new Audio("https://www.orangefreesounds.com/wp-content/uploads/2016/07/Beer-pouring-into-glass-sound-effect.mp3");
+      audioRef.current.volume = 0.5;
+    }
+    
+    // Stop current sound if playing and reset
+    audioRef.current.pause();
+    audioRef.current.currentTime = 0;
+    
+    // Play new sound
+    audioRef.current.play().catch(e => console.log("Audio play failed:", e));
+  };
+
   return (
     <motion.header
       initial={{ y: -100 }}
@@ -72,6 +87,7 @@ const Header = () => {
             href="#inicio"
             onClick={(e) => {
               e.preventDefault();
+              playPourSound();
               scrollToSection("#inicio");
             }}
             className="flex items-center gap-3 cursor-pointer group"
@@ -133,22 +149,6 @@ const Header = () => {
 
           {/* Right side actions */}
           <div className="flex items-center gap-2 md:gap-4">
-            {/* Search - Desktop only */}
-            <div className="hidden md:block relative group">
-              <input
-                type="text"
-                placeholder="Buscar..."
-                className={`w-40 lg:w-48 rounded-full py-2 pl-4 pr-10 focus:ring-2 focus:ring-primary focus:outline-none text-sm border-none transition-all group-hover:w-52 lg:group-hover:w-56 ${
-                  scrolled ? "bg-secondary text-foreground" : "bg-white/10 text-white placeholder:text-white/60"
-                }`}
-              />
-              <button className={`absolute right-3 top-1/2 -translate-y-1/2 transition-colors ${
-                scrolled ? "text-muted-foreground hover:text-primary" : "text-white/80 hover:text-white"
-              }`}>
-                <Search className="w-4 h-4" />
-              </button>
-            </div>
-
             {/* Mobile Menu Toggle */}
             <motion.button
               whileHover={{ scale: 1.1 }}
@@ -193,18 +193,6 @@ const Header = () => {
                   {link.name}
                 </motion.a>
               ))}
-              
-              {/* Mobile Search */}
-              <div className="mt-4 relative">
-                <input
-                  type="text"
-                  placeholder="Buscar productos..."
-                  className="w-full bg-secondary text-foreground rounded-full py-3 pl-4 pr-12 focus:ring-2 focus:ring-primary focus:outline-none border-none"
-                />
-                <button className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-primary">
-                  <Search className="w-5 h-5" />
-                </button>
-              </div>
             </nav>
           </motion.div>
         )}

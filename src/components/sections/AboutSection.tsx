@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 import { Beer, Heart, Award, Users } from "lucide-react";
 
 const stats = [
-  { value: "2018", label: "Año de fundación", icon: Beer },
-  { value: "15+", label: "Variedades creadas", icon: Heart },
+  { value: "2025", label: "Año de fundación", icon: Beer },
+  { value: "4", label: "Variedades creadas", icon: Heart },
   { value: "12", label: "Premios ganados", icon: Award },
   { value: "10K+", label: "Clientes felices", icon: Users },
 ];
@@ -76,7 +76,7 @@ const AboutSection = () => {
           >
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
               <img
-                src="https://images.unsplash.com/photo-1559526324-593bc073d938?q=80&w=800"
+                src="/public/herosexchon.jpeg"
                 alt="Cervecería Quiltre"
                 className="w-full h-[400px] sm:h-[500px] object-cover"
               />
@@ -110,7 +110,7 @@ const AboutSection = () => {
             transition={{ duration: 0.7 }}
           >
             <span className="text-primary font-bold uppercase tracking-wider text-sm">
-              Desde 2018
+              Desde 2025
             </span>
             <h3 className="text-3xl sm:text-4xl font-display font-bold text-foreground mt-2 mb-6">
               El Espíritu del <span className="text-primary">Quiltro Chileno</span>
@@ -118,7 +118,7 @@ const AboutSection = () => {
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
                 Todo comenzó con una pasión compartida por la cerveza artesanal y un 
-                profundo amor por Chile. En 2018, un grupo de amigos cerveceros decidió 
+                profundo amor por Chile. En 2025, un grupo de amigos cerveceros decidió 
                 crear algo único: cervezas que reflejaran el espíritu indomable del 
                 quiltro chileno.
               </p>

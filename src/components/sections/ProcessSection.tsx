@@ -146,7 +146,7 @@ const ProcessSection = () => {
           className="text-center mt-16"
         >
           <p className="text-background/70 mb-6 text-lg">
-            ¿Quieres conocer nuestra cervecería?
+            ¿Quieres conocer nuestra cerveza?
           </p>
           <motion.a
             href="#contacto"
@@ -154,7 +154,7 @@ const ProcessSection = () => {
             whileTap={{ scale: 0.95 }}
             className="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-primary-foreground font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transition-all"
           >
-            <span>Agenda una visita</span>
+            <span>Registra un pedido</span>
             <Sparkles className="w-5 h-5" />
           </motion.a>
         </motion.div>

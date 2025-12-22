@@ -113,8 +113,8 @@ const HeroSection = () => {
             >
               {[
                 { value: "4.8", label: "Rating promedio", icon: Star },
-                { value: "10K+", label: "Clientes felices" },
-                { value: "100%", label: "Artesanal" },
+                { value: "10K", label: "Clientes felices" },
+                { value: "100%", label: "Chilena" },
               ].map((stat, index) => (
                 <div key={index} className="text-center">
                   <div className="flex items-center justify-center gap-1 text-primary">
