@@ -181,7 +181,7 @@ const Header = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="lg:hidden glass border-t border-border overflow-hidden"
+            className="lg:hidden bg-background/95 backdrop-blur-md border-t border-border overflow-hidden"
           >
             <nav className="flex flex-col p-4">
               {navLinks.map((link, index) => (
@@ -195,7 +195,7 @@ const Header = () => {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.05 }}
-                  className={`py-3 px-4 font-medium rounded-lg transition-colors ${
+                  className={`py-4 px-4 font-medium rounded-lg transition-colors ${
                     activeSection === link.href.slice(1)
                       ? "bg-primary/10 text-primary"
                       : "text-muted-foreground hover:bg-secondary hover:text-foreground"

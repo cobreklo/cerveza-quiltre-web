@@ -82,6 +82,23 @@ const HeroSection = () => {
               personalidad.
             </motion.p>
 
+            {/* Mobile Logo */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="block lg:hidden mb-8"
+            >
+              <div className="relative w-48 h-48 mx-auto flex items-center justify-center">
+                <div className="absolute inset-0 bg-primary/20 rounded-full blur-2xl transform scale-75" />
+                <img 
+                  src="/logo.png" 
+                  alt="Cerveza Quiltre" 
+                  className="w-full h-full object-contain drop-shadow-2xl relative z-10 max-h-[180px]"
+                />
+              </div>
+            </motion.div>
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}

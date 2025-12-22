@@ -71,8 +71,11 @@ const ProcessSection = () => {
         <div className="relative">
           {/* Desktop Timeline Line */}
           <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-background/20 -translate-x-1/2" />
+          
+          {/* Mobile Timeline Line */}
+          <div className="block lg:hidden absolute left-0 top-0 bottom-0 w-0.5 bg-primary/30" />
 
-          <div className="space-y-12 lg:space-y-0">
+          <div className="space-y-8 lg:space-y-0 pl-6 lg:pl-0">
             {steps.map((step, index) => (
               <motion.div
                 key={step.number}
@@ -92,7 +95,7 @@ const ProcessSection = () => {
                 >
                   <motion.div
                     whileHover={{ scale: 1.02 }}
-                    className="bg-background/5 backdrop-blur-sm border border-background/10 rounded-2xl p-6 sm:p-8 hover:bg-background/10 transition-all group"
+                    className="bg-background/5 backdrop-blur-sm border border-background/10 rounded-2xl p-4 sm:p-8 hover:bg-background/10 transition-all group"
                   >
                     <div className="flex items-start gap-4">
                       <motion.div

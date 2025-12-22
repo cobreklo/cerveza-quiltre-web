@@ -1,5 +1,12 @@
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const categories = [
   {
@@ -194,12 +201,13 @@ const ProductsSection = () => {
             </div>
           </div>
 
+          {/* Desktop Grid */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8"
+            className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8"
           >
             {products.map((product) => (
               <motion.div
@@ -251,6 +259,70 @@ const ProductsSection = () => {
               </motion.div>
             ))}
           </motion.div>
+
+          {/* Mobile Carousel */}
+          <div className="block md:hidden">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-4">
+                {products.map((product) => (
+                  <CarouselItem key={product.id} className="pl-4 basis-[85%]">
+                    <div className="bg-card rounded-xl shadow-sm border border-border group overflow-hidden flex flex-col h-full">
+                      <div className="relative h-56 overflow-hidden bg-secondary/50 flex items-center justify-center p-6">
+                        {product.badge && (
+                          <span
+                            className={`absolute top-3 left-3 ${product.badgeColor} text-background text-xs font-bold px-2 py-1 rounded shadow-sm z-10`}
+                          >
+                            {product.badge}
+                          </span>
+                        )}
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          className="h-full w-full object-cover rounded-lg"
+                        />
+                      </div>
+                      <div className="p-5 flex-1 flex flex-col">
+                        <div className="flex justify-between items-start mb-2">
+                          <span className="text-primary text-xs font-bold uppercase tracking-wider">
+                            {product.type}
+                          </span>
+                          <div className="flex">{renderStars(product.rating)}</div>
+                        </div>
+                        <h4 className="text-lg font-display font-bold text-card-foreground mb-2">
+                          {product.name}
+                        </h4>
+                        <p className="text-muted-foreground text-sm mb-4 line-clamp-2 flex-1">
+                          {product.description}
+                        </p>
+                        <div className="flex items-center justify-between mt-auto gap-3">
+                          <div>
+                            {product.originalPrice && (
+                              <span className="text-muted-foreground text-sm line-through block">
+                                {formatPrice(product.originalPrice)}
+                              </span>
+                            )}
+                            <span className="text-2xl font-bold text-card-foreground">
+                              {formatPrice(product.price)}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <div className="hidden sm:flex justify-end gap-2 mt-4">
+                <CarouselPrevious />
+                <CarouselNext />
+              </div>
+            </Carousel>
+          </div>
         </motion.div>
       </div>
     </section>
