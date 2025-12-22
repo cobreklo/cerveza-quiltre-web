@@ -7,6 +7,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { Button } from "@/components/ui/button";
 
 const categories = [
   {
@@ -311,6 +312,15 @@ const ProductsSection = () => {
                               {formatPrice(product.price)}
                             </span>
                           </div>
+                          <Button className="shrink-0" asChild>
+                            <a
+                              href={`https://wa.me/56927473012?text=Hola, me interesa la ${product.name}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              Comprar
+                            </a>
+                          </Button>
                         </div>
                       </div>
                     </div>
