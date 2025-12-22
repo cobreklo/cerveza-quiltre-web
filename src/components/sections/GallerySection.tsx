@@ -156,9 +156,11 @@ const GallerySection = () => {
             {filteredImages.map((image, index) => (
               <motion.div
                 key={image.id}
-                variants={itemVariants}
                 layout
-                exit={{ opacity: 0, scale: 0.8 }}
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+                variants={itemVariants}
                 whileHover={{ scale: 1.03 }}
                 className={`relative overflow-hidden rounded-xl cursor-pointer group ${
                   index === 0 ? "md:col-span-2 md:row-span-2" : ""

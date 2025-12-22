@@ -24,6 +24,17 @@ const Header = () => {
       
       // Update active section based on scroll position
       const sections = navLinks.map(link => link.href.slice(1));
+      
+      // Check if we are at the bottom of the page (footer/contact)
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      
+      if (windowHeight + scrollTop >= documentHeight - 100) {
+        setActiveSection("contacto");
+        return;
+      }
+
       for (const section of sections.reverse()) {
         const element = document.getElementById(section);
         if (element) {
