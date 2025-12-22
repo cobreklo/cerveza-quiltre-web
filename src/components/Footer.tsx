@@ -5,7 +5,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   // Placeholder links - user will configure later
-  const whatsappLink = "#"; // Replace with actual WhatsApp link
+  const whatsappLink = "https://wa.me/56912345678"; // Replace with actual WhatsApp link
   const instagramLink = "#"; // Replace with actual Instagram link
 
   return (
@@ -147,10 +147,10 @@ const Footer = () => {
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-primary shrink-0" />
                 <a
-                  href="tel:+56912345678"
+                  href="tel:+56927473012"
                   className="text-background/70 hover:text-primary transition-colors text-sm"
                 >
-                  +56 9 1234 5678
+                  +56 9 2747 3012
                 </a>
               </li>
             </ul>

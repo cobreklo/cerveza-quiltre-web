@@ -29,7 +29,7 @@ const galleryImages = [
   },
   {
     id: 5,
-    src: "public/paleale1.jpeg",
+    src: "/paleale1.jpeg",
     alt: "Cerveza artesanal",
     category: "productos",
   },

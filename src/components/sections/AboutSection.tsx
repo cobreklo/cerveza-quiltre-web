@@ -76,7 +76,7 @@ const AboutSection = () => {
           >
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
               <img
-                src="/public/herosexchon.jpeg"
+                src="/herosexchon.jpeg"
                 alt="Cervecería Quiltre"
                 className="w-full h-[400px] sm:h-[500px] object-cover"
               />

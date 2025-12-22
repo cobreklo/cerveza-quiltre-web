@@ -3,7 +3,7 @@ import { MessageCircle } from "lucide-react";
 
 const WhatsAppButton = () => {
   // Placeholder - user will configure later
-  const whatsappLink = "#";
+  const whatsappLink = "https://wa.me/56927473012";
 
   return (
     <motion.a

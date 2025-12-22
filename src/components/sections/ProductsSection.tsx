@@ -29,7 +29,7 @@ const products = [
     price: 2990,
     originalPrice: 3500,
     rating: 4.5,
-    image: "/public/paleale1.jpeg",
+    image: "/paleale1.jpeg",
     badge: "-15%",
     badgeColor: "bg-destructive",
   },
@@ -235,7 +235,7 @@ const ProductsSection = () => {
                   <p className="text-muted-foreground text-sm mb-4 line-clamp-2 flex-1">
                     {product.description}
                   </p>
-                  <div className="flex items-end justify-between mt-auto">
+                  <div className="flex items-center justify-between mt-auto gap-3">
                     <div>
                       {product.originalPrice && (
                         <span className="text-muted-foreground text-sm line-through block">
