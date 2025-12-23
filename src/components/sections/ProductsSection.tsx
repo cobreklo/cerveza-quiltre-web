@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Star } from "lucide-react";
 import {
   Carousel,
@@ -72,9 +73,40 @@ const products = [
   },
 ];
 
-const filterButtons = ["Todos", "IPAs", "Stout", "Packs"];
+const filterButtons = ["Todos", "IPAs", "Rubias", "Rojas", "Stout", "Packs"];
 
 const ProductsSection = () => {
+  const [activeFilter, setActiveFilter] = useState("Todos");
+
+  const filteredProducts = products.filter((product) => {
+    // 1. Caso base: Si es "Todos", mostramos todo.
+    if (activeFilter === "Todos") return true;
+
+    // 2. Normalizamos para evitar errores de mayúsculas
+    const type = product.type.toLowerCase();
+    const name = product.name.toLowerCase();
+
+    // 3. Lógica específica por categoría
+    if (activeFilter === "IPAs") {
+      return type.includes("ipa") || type.includes("pale ale");
+    }
+    if (activeFilter === "Rubias") {
+      return type.includes("golden") || type.includes("blonde") || type.includes("lager");
+    }
+    if (activeFilter === "Rojas") {
+      return type.includes("amber") || type.includes("red") || type.includes("roja");
+    }
+    if (activeFilter === "Stout") {
+      return type.includes("stout") || type.includes("porter") || type.includes("negra");
+    }
+    if (activeFilter === "Packs") {
+      return type.includes("pack") || name.includes("pack");
+    }
+
+    // 4. Fallback: Si no coincide con nada anterior, devolvemos false (o true si prefieres búsqueda laxa)
+    return false;
+  });
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -185,13 +217,14 @@ const ProductsSection = () => {
               </p>
             </div>
             <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide pb-2 md:pb-0 w-full md:w-auto">
-              {filterButtons.map((filter, index) => (
+              {filterButtons.map((filter) => (
                 <motion.button
                   key={filter}
+                  onClick={() => setActiveFilter(filter)}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
-                    index === 0
+                    activeFilter === filter
                       ? "bg-primary text-primary-foreground shadow-md"
                       : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
                   }`}
@@ -204,19 +237,21 @@ const ProductsSection = () => {
 
           {/* Desktop Grid */}
           <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+            layout
             className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8"
           >
-            {products.map((product) => (
-              <motion.div
-                key={product.id}
-                variants={itemVariants}
-                whileHover={{ y: -8 }}
-                className="bg-card rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-border group overflow-hidden flex flex-col h-full card-lift"
-              >
+            <AnimatePresence mode="popLayout">
+              {filteredProducts.map((product) => (
+                <motion.div
+                  layout
+                  key={product.id}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.2 }}
+                  whileHover={{ y: -8 }}
+                  className="bg-card rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-border group overflow-hidden flex flex-col h-full card-lift"
+                >
                 <div className="relative h-56 sm:h-64 overflow-hidden bg-secondary/50 flex items-center justify-center p-6">
                   {product.badge && (
                     <span
@@ -257,8 +292,9 @@ const ProductsSection = () => {
                     </div>
                   </div>
                 </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              ))}
+            </AnimatePresence>
           </motion.div>
 
           {/* Mobile Carousel */}
@@ -271,7 +307,7 @@ const ProductsSection = () => {
               className="w-full"
             >
               <CarouselContent className="-ml-4">
-                {products.map((product) => (
+                {filteredProducts.map((product) => (
                   <CarouselItem key={product.id} className="pl-4 basis-[85%]">
                     <div className="bg-card rounded-xl shadow-sm border border-border group overflow-hidden flex flex-col h-full">
                       <div className="relative h-56 overflow-hidden bg-secondary/50 flex items-center justify-center p-6">
