@@ -42,7 +42,7 @@ const galleryImages = [
   {
     id: 7,
     src: "/fotoquiltre8.jpg",
-    alt: "Quiltre neipa servida",
+    alt: "Quiltre Imperial Pale Ale",
     category: "cervecería",
   },
   {
