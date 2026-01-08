@@ -12,16 +12,8 @@ import { Button } from "@/components/ui/button";
 
 const categories = [
   {
-    name: "Rubias",
-    image: "https://images.unsplash.com/photo-1608270586620-248524c67de9?q=80&w=600",
-  },
-  {
-    name: "Negras",
-    image: "https://images.unsplash.com/photo-1518176258769-f227c798150e?q=80&w=600",
-  },
-  {
-    name: "Ámbar",
-    image: "https://images.unsplash.com/photo-1535958636474-b021ee887b13?q=80&w=600",
+    name: "IPAs",
+    image: "/fotoquiltre5.jpg",
   },
   {
     name: "Packs",
@@ -32,7 +24,7 @@ const categories = [
 const products = [
   {
     id: 1,
-    name: 'Quiltre "Furia" IPA',
+    name: 'Quiltre Imperial Pale Ale',
     type: "Imperial Pale Ale",
     description: "Intensa, aromática y con carácter fuerte. Notas cítricas y un amargor persistente.",
     price: 2990,
@@ -44,36 +36,36 @@ const products = [
   },
   {
     id: 2,
-    name: 'Quiltre "Leal" Golden',
-    type: "Golden Ale",
-    description: "Refrescante y equilibrada. La compañera perfecta para cualquier momento del día.",
+    name: 'Quiltre Neipa',
+    type: "NEIPA",
+    description: "Jugosa, turbia y llena de lúpulo. Explosión tropical con amargor suave.",
     price: 2500,
     rating: 4,
-    image: "https://images.unsplash.com/photo-1535958636474-b021ee887b13?q=80&w=400",
+    image: "/fotoquiltre1.jpg",
   },
   {
     id: 3,
-    name: 'Quiltre "Nocturna" Stout',
-    type: "Stout",
-    description: "Cuerpo robusto con notas profundas de café y chocolate amargo. Para paladares exigentes.",
-    price: 3200,
+    name: 'Six Pack Imperial Pale Ale',
+    type: "Pack",
+    description: "6 unidades de nuestra premiada Imperial Pale Ale. Intensidad y carácter para compartir.",
+    price: 15990,
     rating: 5,
-    image: "https://images.unsplash.com/photo-1518176258769-f227c798150e?q=80&w=400",
-    badge: "Premium",
-    badgeColor: "bg-foreground",
+    image: "/fotoquiltre6.jpg",
+    badge: "Oferta",
+    badgeColor: "bg-primary",
   },
   {
     id: 4,
-    name: 'Quiltre "Callejera" Amber',
-    type: "Amber Ale",
-    description: "Color rojizo vibrante, caramelo suave y final seco. Una aventura de sabor en cada sorbo.",
-    price: 2800,
+    name: '4 Pack Quiltre Neipa',
+    type: "Pack",
+    description: "4 latas frescas de nuestra jugosa NEIPA. Explosión de lúpulo tropical.",
+    price: 9500,
     rating: 4.5,
-    image: "https://images.unsplash.com/photo-1608270586620-248524c67de9?q=80&w=400",
+    image: "/fotoquiltre3.jpg",
   },
 ];
 
-const filterButtons = ["Todos", "IPAs", "Rubias", "Rojas", "Stout", "Packs"];
+const filterButtons = ["Todos", "IPAs", "Packs"];
 
 const ProductsSection = () => {
   const [activeFilter, setActiveFilter] = useState("Todos");
@@ -89,15 +81,6 @@ const ProductsSection = () => {
     // 3. Lógica específica por categoría
     if (activeFilter === "IPAs") {
       return type.includes("ipa") || type.includes("pale ale");
-    }
-    if (activeFilter === "Rubias") {
-      return type.includes("golden") || type.includes("blonde") || type.includes("lager");
-    }
-    if (activeFilter === "Rojas") {
-      return type.includes("amber") || type.includes("red") || type.includes("roja");
-    }
-    if (activeFilter === "Stout") {
-      return type.includes("stout") || type.includes("porter") || type.includes("negra");
     }
     if (activeFilter === "Packs") {
       return type.includes("pack") || name.includes("pack");
@@ -172,17 +155,22 @@ const ProductsSection = () => {
           <motion.div
             variants={containerVariants}
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6"
+            animate="visible"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 max-w-3xl mx-auto"
           >
             {categories.map((category, index) => (
-              <motion.a
+              <motion.div
                 key={category.name}
-                href="#"
+                onClick={() => {
+                  setActiveFilter(category.name);
+                  const element = document.getElementById("products-list");
+                  if (element) {
+                    element.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
                 variants={itemVariants}
                 whileHover={{ y: -8 }}
-                className="group relative overflow-hidden rounded-xl aspect-square shadow-md hover:shadow-xl transition-all duration-300"
+                className="cursor-pointer group relative overflow-hidden rounded-xl aspect-square shadow-md hover:shadow-xl transition-all duration-300 bg-muted"
               >
                 <img
                   src={category.image}
@@ -194,13 +182,14 @@ const ProductsSection = () => {
                     {category.name}
                   </h4>
                 </div>
-              </motion.a>
+              </motion.div>
             ))}
           </motion.div>
         </motion.div>
 
         {/* Products */}
         <motion.div
+          id="products-list"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -290,6 +279,15 @@ const ProductsSection = () => {
                         {formatPrice(product.price)}
                       </span>
                     </div>
+                    <Button className="shrink-0" asChild>
+                      <a
+                        href={`https://wa.me/56927473012?text=Hola, me interesa la ${product.name}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Comprar
+                      </a>
+                    </Button>
                   </div>
                 </div>
                 </motion.div>

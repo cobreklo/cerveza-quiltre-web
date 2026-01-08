@@ -3,7 +3,7 @@ import { Beer, Heart, Award, Users } from "lucide-react";
 
 const stats = [
   { value: "2025", label: "Año de fundación", icon: Beer },
-  { value: "4", label: "Variedades creadas", icon: Heart },
+  { value: "2", label: "Variedades creadas", icon: Heart },
   { value: "12", label: "Premios ganados", icon: Award },
   { value: "10K+", label: "Clientes felices", icon: Users },
 ];
